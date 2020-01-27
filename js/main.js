@@ -11,9 +11,8 @@ const bookDescriptions = document.getElementById('book-descriptions');
 const card = document.querySelector('.books-list');
 //element of read pages
 const readPages = document.querySelector('.read-pages')
-
 let books=[];
-let countSum = 0;
+
 
 class Book {
 
@@ -64,18 +63,22 @@ class UIevents{
 		let count = localStorage.getItem("pages")
 		readPages.innerHTML = count;
 	}
-	static countPages(count){
-		countSum += +count;
+	static addPages(pages){
+		let countSum = +localStorage.getItem("pages");
+		countSum += +pages;
 		localStorage.setItem("pages", +countSum);
 		readPages.innerText = countSum;
 	}
-	static removePages(count){
-		let countSum = +localStorage.getItem("pages")
-		countSum -= +count;
+	static removePages(pages){
+		let countSum = +localStorage.getItem("pages");
+		countSum -= +pages;
 		localStorage.setItem("pages", +countSum);
 		readPages.innerText = countSum;
 	}
 }
+
+document.addEventListener("DOMContentLoaded", Book.getBook());
+document.addEventListener("DOMContentLoaded", UIevents.readPages());
 
 mainForm.addEventListener('submit',(event)=>{
 	event.preventDefault();
@@ -83,12 +86,11 @@ mainForm.addEventListener('submit',(event)=>{
 	newBook.addBook(newBook);
 	books.push(newBook);
 	localStorage.setItem("books",JSON.stringify(books));
-	UIevents.countPages(pages.value);
-	UIevents.clearInput(+pages.value);
+	UIevents.addPages(pages.value);
+	UIevents.clearInput();
 })
 
-document.addEventListener("DOMContentLoaded", Book.getBook());
-document.addEventListener("DOMContentLoaded", UIevents.readPages());
+
 
 card.addEventListener('click', (event)=>{
 	let li = event.target.parentNode.parentNode.parentNode;
@@ -96,7 +98,7 @@ card.addEventListener('click', (event)=>{
 	if(event.target.dataset.button==='delete'){
 		li.remove();
 		Book.deleteBook(nameBook.childNodes[0].textContent);
-		UIevents.removePages(+nameBook.childNodes[2].textContent);
+		UIevents.removePages(nameBook.childNodes[2].textContent);
 	}
 });
 	
