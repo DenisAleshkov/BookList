@@ -14,55 +14,45 @@
 <body>
 
 	<header class="header">
-		<div class="container header-container">
-			<div class="title">
-				<a href="/" class="title-link">
-					<h1 class="title-link-text">Book diary</h1>
+		<div class="header__container container ">
+			<div class="header__title">
+				<a href="/" class="header__title__link">
+					<h1>Book diary</h1>
 				</a>
 			</div>
-			<div class="card text-center" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Special title treatment</h5>
-					<p class="card-text">you read :</p> <span class="read-pages"></span>
+			<div class="header__card " style="width: 18rem;">
+				<div class="card__body">
+					<h5 class="card__body__title">Special title treatment</h5>
+					<div class="card__body__read">
+						<p class="card__body__text">you read :</p> <span class="card__body__pages"></span>
+					</div>
+					
 				</div>
 			</div>
 		</div>
+		<div class="form__container container ">
+			<form class="main__form">
+				<div class="form-group">
+					<input placeholder="Enter book name:" type="text" class="form-control" id="book__name" required >
+				</div>
+				<div class="form-group">
+					<input placeholder="Enter book autor:" type="text" class="form-control" id="book__author" required >
+				</div>
+				<div class="form-group">
+					<input placeholder="Enter count pages:" type="text" class="form-control" id="pages__count" required >
+				</div>
+				<div class="form-group">
+					<textarea placeholder="Enter book descriptions" class="form-control" id="book__descriptions" rows="3"></textarea>
+				</div>
+				<div class="form-button">
+					<button  type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+	    </div>
 	</header>
-
-	<div class="container form-container">
-		<form class="main-form">
-			<div class="form-group">
-				<label for="book-name">Enter book name:</label>
-				<input type="text" class="form-control" id="book-name" required >
-			</div>
-
-			<div class="form-group">
-				<label for="book-author">Enter book autor:</label>
-				<input type="text" class="form-control" id="book-author" required >
-			</div>
-
-			<div class="form-group">
-				<label for="pages-count">Enter count pages:</label>
-				<input type="text" class="form-control" id="pages-count" required >
-			</div>
-
-			
-			<div class="form-group">
-				<label for="book-descriptions">Enter book descriptions</label>
-				<textarea class="form-control" id="book-descriptions" rows="3"></textarea>
-			</div>
-
-			<div class="form-button">
-				<button  type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</form>
-	</div>
 	<div class="books">
-		<ul class="container books-list"></ul>
+		<ul class="books__list container"></ul>
 	</div>
-
-
-
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="./bootstrap/js/bootstrap.min.js"></script>
