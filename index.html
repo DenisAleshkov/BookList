@@ -1,79 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-	<title>Book diary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+<title>Book diary</title>
 </head>
-<body>
-	<header class="header">
-		<div class="header__container container ">
-			<div class="header__title">
-				<a href="/" class="header__title__link">
-					<h1>Book diary</h1>
-				</a>
-			</div>
-		</div>
-		<div class="form__container container ">
-			<form class="main__form">
-				<div class="form-group">
-					<input placeholder="Enter book name:" type="text" class="form-control" id="book__name" required >
-				</div>
-				<div class="form-group">
-					<input placeholder="Enter book autor:" type="text" class="form-control" id="book__author" required >
-				</div>
-				<div class="form-group">
-					<input placeholder="Enter count pages:" type="text" class="form-control" id="pages__count" required >
-				</div>
-				<div class="form-group">
-					<textarea placeholder="Enter book descriptions" class="form-control" id="book__descriptions" rows="3"></textarea>
-				</div>
-				<div class="form-button">
-					<button  type="submit" class="btn btn-primary">Submit</button>
-				</div>
-			</form>
-	    </div>
-	</header>
-	<div class="books">
-		<!-- Modal Block -->
-		<!-- Button trigger modal -->
-		<div class="books__btn">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  				Show statistics
-			</button>
-		</div>
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalCenterTitle">Statistics</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <div class="card__body__read">
-						<p class="card__body__text">pages :</p><span class="card__body__pages"></span>
-						<p class="card__body__text">books :</p><span class="card__body__books"></span>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="header col-md-3">
+					<div class="header__container">
+						<div class="header__title">
+							<a href="/" class="header__title__link">
+								<h1>Book diary</h1>
+							</a>
+						</div>
 					</div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<!--------------------------------- -->
-		<ul class="books__list container"></ul>
-	</div>
+					<div class="form__container">
+						<form class="main__form">
+							<div class="form-group">
+								<input placeholder="Enter book name" type="text" class="form-control" id="book__name" required >
+							</div>
+							<div class="form-group">
+								<input placeholder="Enter book autor" type="text" class="form-control" id="book__author" required >
+							</div>
+							<div class="form-group">
+								<input placeholder="Enter count pages" type="text" class="form-control pages__count" id="pages__count" required >
+							</div>
+							<div class="form-group">
+								<textarea placeholder="Enter book descriptions" class="form-control" id="book__descriptions" rows="3"></textarea>
+							</div>
+							<div class="form-button">
+								<button  type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="books col-md-9">
+					<!-- Modal Block -->
+					<!-- Button trigger modal -->
+					<div class="books__btn">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							Show statistics
+						</button>
+					</div>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalCenterTitle">Statistics</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="card__body__read">
+										<p class="card__body__text">pages:</p><span class="card__body__pages"></span>
+										<p class="card__body__text">books:</p><span class="card__body__books"></span>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="books__list"></ul>
+				</div>
+			</div>		
+		</div>	
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="./bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/mask.js"></script>
 	<script src="./js/main.js"></script>
 </body>
 </html>

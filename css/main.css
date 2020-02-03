@@ -3,9 +3,6 @@ ul {
   padding-left: 0;
   list-style-type: none; }
 
-body {
-  display: flex; }
-
 a, a:hover {
   text-decoration: none; }
 
@@ -26,3 +23,7 @@ textarea {
   .books__btn {
     display: flex;
     justify-content: flex-end; }
+
+.book__card {
+  opacity: 0;
+  transition: all .5s ease; }

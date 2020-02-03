@@ -16,19 +16,21 @@ class Book {
 	}
 	addBook(book){
 		let li = document.createElement('li');
+		li.classList.add('book__card');
 		li.innerHTML=`
-			<li>
+			<li class="book_wrapper">
 				<div class="card" style="width: 18rem;">
   					<div class="card-body book-item"><h5 class="card-title">${book.bookName}</h5>
-  						<h5 class="card-title">${book.bookAuthor}</h5>
-  						<h5 class="card-title">${book.pages}</h5>
-  						<p class="card-text">${book.descriptions}</p>
+  					<h5 class="card-title">${book.bookAuthor}</h5>
+  					<h5 class="card-title">${book.pages}</h5>
+  					<p class="card-text">${book.descriptions}</p>
   						<button type="button" data-button='delete' class="btn btn-outline-danger delete">
   							Delete
   						</button>
   					</div>
   				</div>
 			</li>`;
+		setTimeout(()=>{ li.style.opacity = 1 }, 500);
 		bookList.appendChild(li);
 	}
 	static getBook(){
