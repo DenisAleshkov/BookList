@@ -23,3 +23,6 @@ textarea {
   .books__list li {
     margin: 5px;
     display: inline-block; }
+  .books__btn {
+    display: flex;
+    justify-content: flex-end; }

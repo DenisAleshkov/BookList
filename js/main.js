@@ -1,17 +1,12 @@
 'use strict';
-//
-const mainForm = document.querySelector('.main__form');
 const bookList = document.querySelector('.books__list');
-//inputs
 const bookName = document.getElementById('book__name');
 const pages = document.getElementById('pages__count');
 const bookAuthor = document.getElementById('book__author');
 const bookDescriptions = document.getElementById('book__descriptions');
-//element of read pages
-const readPages = document.querySelector('.card__body__pages')
 let books=[];
-
-
+let countBooks = 0;
+const clearInput=()=>{bookName.value = bookAuthor.value = bookDescriptions.value = pages.value = '';}
 class Book {
 	constructor(bookName, bookAuthor, descriptions, pages){
 		this.bookName = bookName;
@@ -38,7 +33,7 @@ class Book {
 	}
 	static getBook(){
 		books = JSON.parse(localStorage.getItem('books'));
-		books === null ? books=[] : books.forEach(book => new Book().addBook(book))	
+		books === null ? books=[] : books.forEach(book =>new Book().addBook(book))	
 	}
 	static deleteBook(name){
 		books = JSON.parse(localStorage.getItem('books'));
@@ -50,56 +45,74 @@ class Book {
 		})
 	}
 }
-class UIevents{
+class Page{
 	constructor(){
-	}
-	static clearInput(){
-		bookName.value = bookAuthor.value = bookDescriptions.value = pages.value = '';
 	}
 	static getPages(){
 		let count = localStorage.getItem("pages")
-		readPages.innerHTML = count;
+		document.querySelector('.card__body__pages').innerHTML = count;
 	}
 	static eventsPages(pages){
-		let countSum = +localStorage.getItem("pages");
-		countSum += pages;
-		localStorage.setItem("pages", +countSum);
-		readPages.innerText = countSum;
+		let countPages = +localStorage.getItem("pages");
+		countPages += pages;
+		localStorage.setItem("pages", +countPages);
+		document.querySelector('.card__body__pages').innerText = countPages;
 	}
 	static addPages(pages){
-		UIevents.eventsPages(+pages);
-		
+		Page.eventsPages(+pages);
 	}
 	static removePages(pages){
-		UIevents.eventsPages(-(+pages));
+		Page.eventsPages(-(+pages));
+	}
+}
+class BookEvents {
+	constructor(){
 	}
 	static addBookInLS(newBook){
 		books.push(newBook);
 		localStorage.setItem("books",JSON.stringify(books));
 	}
+	static getCountBook(){
+		books.forEach(book => {
+			countBooks++;
+			return countBooks;	
+		})
+		document.querySelector('.card__body__books').innerText = countBooks;
+	}
+	static addCountBook(){
+		countBooks++;
+		document.querySelector('.card__body__books').innerText = countBooks;
+	}
+	static removeCountBook(){
+		countBooks--;
+		document.querySelector('.card__body__books').innerText = countBooks;
+	}
 }
 //get Books and Pages when loading a document
 document.addEventListener("DOMContentLoaded",() =>{
 	Book.getBook();
-	UIevents.getPages();
+	Page.getPages();
+	BookEvents.getCountBook();
 });
 //add Books, pages and clear inputs
-mainForm.addEventListener('submit',(event)=>{
+document.querySelector('.main__form').addEventListener('submit',(event)=>{
 	event.preventDefault();
 	const newBook = new Book(bookName.value, bookAuthor.value, bookDescriptions.value, pages.value);
 	newBook.addBook(newBook);
-	UIevents.addBookInLS(newBook);
-	UIevents.addPages(pages.value);
-	UIevents.clearInput();
+	BookEvents.addBookInLS(newBook);
+	Page.addPages(pages.value);
+	clearInput();
+	BookEvents.addCountBook();
 })
 //remove Books, pages at the click of a button
 bookList.addEventListener('click', (event)=>{
 	 let li = event.target.parentNode.parentNode.parentNode;
 	 let nameBook = event.target.parentNode;
-	 if(event.target.dataset.button==='delete'){
+	 if(event.target.dataset.button === 'delete'){
 	 	li.remove();
 	 	Book.deleteBook(nameBook.childNodes[0].textContent);
-	    UIevents.removePages(nameBook.childNodes[4].textContent);
+	    Page.removePages(nameBook.childNodes[4].textContent);
+	    BookEvents.removeCountBook();
 	 }
 });
 	
