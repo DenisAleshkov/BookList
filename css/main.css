@@ -7,6 +7,9 @@ ul {
 a, a:hover {
   text-decoration: none; }
 
+button, button:focus, button:active {
+  outline: none; }
+
 textarea {
   resize: none; }
 
@@ -42,17 +45,26 @@ input[type=password] {
 .header__title__link:hover {
   color: #FFFFFF; }
 
-.card__body__pages {
-  margin-left: 10px; }
-
-.card__body__read {
+.modal__statistics {
   display: flex; }
+  .modal__statistics span.common__color {
+    color: #6ed0f6;
+    margin-left: 10px; }
+
+.modal__text {
+  color: #495057; }
 
 .books {
   width: 100%; }
-  .books__list li {
-    margin: 5px;
-    display: inline-block; }
+  .books__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-flow: wrap; }
+    .books__list li {
+      margin: 5px;
+      display: inline-block; }
   .books__btn {
     display: flex;
     justify-content: flex-end; }
@@ -61,7 +73,7 @@ input[type=password] {
   opacity: 0;
   transition: all 1s ease; }
 
-.btn-primary {
+button.btn-primary {
   background: #079BCF;
   border: none;
   border-radius: 8px;
@@ -89,3 +101,52 @@ input[type=password] {
   color: #495057; }
   .card-body h5 {
     color: #6ed0f6; }
+
+.modal-header {
+  color: #495057; }
+
+.col-description {
+  padding: 0; }
+
+button.delete__btn {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  font-size: 21px;
+  border-radius: 4px;
+  top: 15px;
+  right: 15px;
+  background-color: #2c343c;
+  border: none;
+  color: #ffffff;
+  transition: all .5s ease; }
+  button.delete__btn:hover {
+    color: #da2d29; }
+
+button.btn-secondary {
+  background: #079BCF;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  font-size: 25px;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.4, 1); }
+
+button.btn-show {
+  background: #079BCF;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  font-size: 25px;
+  height: 150px;
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.6, 0, 0.4, 1); }

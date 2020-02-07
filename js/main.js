@@ -35,24 +35,13 @@ class Book {
   					Book author:<h5 class="card-title">${book.bookAuthor}</h5>
   					pages:<h5 class="card-title">${book.pages}</h5>
   					Descriptions:<p class="card-text">${book.descriptions}</p>
-  					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-						<button class='variousamechanics'>
-  							<div class='cleverlypaired'>
-    							<i class='fa fa-trash-o'></i>
-    							<i class='fa fa-question'></i>
-    							<i class='fa fa-check'></i>
-  							</div>
-  							<div class='kedeverything'>
-    							<span>Удалить!</span>
-  							</div>
-						</button>
-  					<button type="button" data-button='delete' class="btn btn-outline-danger delete">
-  						Delete
-  					</button><p class="card-text">${book.id}</p>
+  					Unique code:<p class="card-text">${book.id}</p>
+  					<button type="button" data-button='delete' class='fa fa-trash-o delete__btn'>
+					</button>
   					</div>
   				</div>
 			</li>`;
-		setTimeout(()=>{ li.style.opacity = 1 }, 100);
+		setTimeout(()=>{ li.style.opacity = 1 }, 300);
 		bookList.appendChild(li);
 	}
 	static getBook(){
@@ -74,13 +63,13 @@ class Page{
 	}
 	static getPages(){
 		let count = localStorage.getItem("pages")
-		document.querySelector('.card__body__pages').innerHTML = count;
+		document.querySelector('.modal__pages').innerHTML = count;
 	}
 	static eventsPages(pages){
 		let countPages = +localStorage.getItem("pages");
 		countPages += pages;
 		localStorage.setItem("pages", +countPages);
-		document.querySelector('.card__body__pages').innerText = countPages;
+		document.querySelector('.modal__pages').innerText = countPages;
 	}
 	static addPages(pages){
 		Page.eventsPages(+pages);
@@ -101,15 +90,15 @@ class BookEvents {
 			countBooks++;
 			return countBooks;	
 		})
-		document.querySelector('.card__body__books').innerText = countBooks;
+		document.querySelector('.modal__books').innerText = countBooks;
 	}
 	static addCountBook(){
 		countBooks++;
-		document.querySelector('.card__body__books').innerText = countBooks;
+		document.querySelector('.modal__books').innerText = countBooks;
 	}
 	static removeCountBook(){
 		countBooks--;
-		document.querySelector('.card__body__books').innerText = countBooks;
+		document.querySelector('.modal__books').innerText = countBooks;
 	}
 }
 //get Books and Pages when loading a document
@@ -134,10 +123,8 @@ bookList.addEventListener('click', (event)=>{
 	 let nameBook = event.target.parentNode;
 	 if(event.target.dataset.button === 'delete'){
 	 	li.remove();
-	 	Book.deleteBook(nameBook.childNodes[10].textContent);
-	 	console.log("nameBook.childNodes", nameBook.childNodes);
+	 	Book.deleteBook(nameBook.childNodes[9].textContent);
 	    Page.removePages(nameBook.childNodes[5].textContent);
-	    console.log("nameBook.childNodes", nameBook.childNodes);
 	    BookEvents.removeCountBook();
 	 }
 });
